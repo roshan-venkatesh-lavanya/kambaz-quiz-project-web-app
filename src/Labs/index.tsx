@@ -16,11 +16,11 @@ export default function Labs() {
 
     <div>
       <h1>Labs</h1>
-      <p>Created by: Shivang Manishkumar Patel</p>
-      <p> Sec 01 </p>
+      <p>Created by: Roshan Venkatesh Lavanya</p>
+      <p> Sec 04 </p>
       <li>
         <a 
-          href="https://github.com/shivang2402/kambaz-react-web-app.git" 
+          href="https://github.com/roshan-venkatesh-lavanya" 
           id="wd-github"
         >
           GitHub Repository
