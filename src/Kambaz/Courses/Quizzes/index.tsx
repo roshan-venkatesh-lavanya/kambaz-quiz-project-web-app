@@ -1,6 +1,3 @@
-
-
-
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -43,7 +40,7 @@ export default function QuizList() {
     const newQuiz = {
       title: "Untitled Quiz",
       description: "",
-      quizType: "Graded Quiz",
+      quizType: "Graded Quiz" as const,
       assignmentGroup: "Quizzes",
       shuffleAnswers: true,
       timeLimit: 20,
@@ -72,7 +69,6 @@ export default function QuizList() {
     }
   };
 
-
   const getAvailability = (quiz: any) => {
     const now = new Date();
     const available = new Date(quiz.dates?.available);
@@ -98,7 +94,6 @@ export default function QuizList() {
       console.error("Failed to delete quiz:", err);
     }
   };
-
 
   return (
     <Container className="mt-4">
@@ -145,7 +140,6 @@ export default function QuizList() {
                             navigate(`/Kambaz/Courses/${cid}/Quizzes/${quiz._id}`);
                           }
                         }}
-
                         className="fw-bold text-dark text-decoration-none"
                       >
                         {quiz.title}
