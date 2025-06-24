@@ -1,45 +1,39 @@
 import { useEffect, useState } from "react";
-import * as client from "./client.ts";
-import { FormControl } from "react-bootstrap";
-
+import * as client from "./client";
 export default function WorkingWithObjectsAsynchronously() {
   const [assignment, setAssignment] = useState<any>({});
   const fetchAssignment = async () => {
     const assignment = await client.fetchAssignment();
     setAssignment(assignment);
   };
-
   const updateTitle = async (title: string) => {
     const updatedAssignment = await client.updateTitle(title);
     setAssignment(updatedAssignment);
   };
-
   useEffect(() => {
     fetchAssignment();
   }, []);
-
   return (
     <div id="wd-asynchronous-objects">
       <h3>Working with Objects Asynchronously</h3>
       <h4>Assignment</h4>
-      <FormControl
+      <input
         defaultValue={assignment.title}
-        className="mb-2"
+        className="form-control mb-2"
         onChange={(e) =>
           setAssignment({ ...assignment, title: e.target.value })
         }
       />
-      <FormControl
-        // rows={3}
+      <textarea
         defaultValue={assignment.description}
-        className="mb-2"
+        className="form-control mb-2"
         onChange={(e) =>
           setAssignment({ ...assignment, description: e.target.value })
         }
       />
-      <FormControl
+      <input
         type="date"
-        className="mb-2"
+        className="form-control mb-2"
         defaultValue={assignment.due}
         onChange={(e) => setAssignment({ ...assignment, due: e.target.value })}
       />
@@ -54,7 +48,8 @@ export default function WorkingWithObjectsAsynchronously() {
           }
         />
         <label className="form-check-label" htmlFor="wd-completed">
-          Completed
+          {" "}
+          Completed{" "}
         </label>
       </div>
       <button
