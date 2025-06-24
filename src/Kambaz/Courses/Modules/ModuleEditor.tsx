@@ -1,5 +1,4 @@
 import { Modal, FormControl, Button } from "react-bootstrap";
-
 export default function ModuleEditor({
   show,
   handleClose,
@@ -8,7 +7,7 @@ export default function ModuleEditor({
   setModuleName,
   addModule,
 }: {
-  show: boolean; // Ensure `show` prop is included
+  show: boolean;
   handleClose: () => void;
   dialogTitle: string;
   moduleName: string;
@@ -23,12 +22,15 @@ export default function ModuleEditor({
       <Modal.Body>
         <FormControl
           value={moduleName}
-          onChange={(e) => setModuleName(e.target.value)}
+          onChange={(e) => {
+            setModuleName(e.target.value);
+          }}
         />
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
-          Cancel
+          {" "}
+          Cancel{" "}
         </Button>
         <Button
           variant="primary"
@@ -37,7 +39,8 @@ export default function ModuleEditor({
             handleClose();
           }}
         >
-          Add Module
+          {" "}
+          Add Module{" "}
         </Button>
       </Modal.Footer>
     </Modal>

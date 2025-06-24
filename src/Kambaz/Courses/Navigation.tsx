@@ -1,10 +1,7 @@
-
-import { ListGroup } from "react-bootstrap";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 export default function CourseNavigation() {
-  const { cid } = useParams(); // Retrieve course ID from the URL
-  const location = useLocation(); // Get current pathname
+  const { cid } = useParams();
 
   const links = [
     "Home",
@@ -18,23 +15,28 @@ export default function CourseNavigation() {
   ];
 
   return (
-    <ListGroup id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
+    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
       {links.map((link) => {
-        const path = `/Kambaz/Courses/${cid}/${link}`;
-        const isActive = location.pathname === path;
+        const to = `/Kambaz/Courses/${cid}/${link}`;
+
+        const id = `wd-course-${link.toLowerCase()}-link`;
 
         return (
-          <ListGroup.Item key={link} className={`p-0 border-0 ${isActive ? "active" : ""}`}>
-            <Link
-              to={path}
-              id={`wd-course-${link.toLowerCase()}-link`}
-              className={`btn btn-link w-100 text-start list-group-item border-0 ${isActive ? "text-black" : "text-danger"}`}
-            >
-              {link}
-            </Link>
-          </ListGroup.Item>
+          <NavLink
+            key={link}
+            to={to}
+            id={id}
+            className={({ isActive }) =>
+              `list-group-item border border-0 ${isActive ? "active" : ""}`
+            }
+            style={({ isActive }) => ({
+              color: isActive ? "black" : "red",
+            })}
+          >
+            {link}
+          </NavLink>
         );
       })}
-    </ListGroup>
+    </div>
   );
 }

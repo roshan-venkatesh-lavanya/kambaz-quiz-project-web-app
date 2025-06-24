@@ -1,47 +1,95 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { assignments } from "../../Database";
-import { v4 as uuidv4 } from "uuid";
-const initialState = {
-  assignments: assignments,
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+
+export interface Assignment {
+  _id?: string; 
+  title: string;
+  description?: string;
+  points: number;
+  dueDate?: string;
+  availableFromDate?: string;
+  availableUntil?: string;
+  course: string;
+}
+
+export interface SavedAssignment extends Assignment {
+  _id: string;
+}
+
+export interface AssignmentsState {
+  assignments: SavedAssignment[]; 
+  currentAssignment: Assignment | null;
+}
+
+const initialState: AssignmentsState = {
+  assignments: [],
+  currentAssignment: null,
 };
 
 const assignmentsSlice = createSlice({
   name: "assignments",
   initialState,
   reducers: {
-    setAssignments: (state, { payload: assignments }) => {
-      state.assignments = assignments;
+    setAssignments: (state, action: PayloadAction<SavedAssignment[]>) => {
+      state.assignments = action.payload;
     },
-    addAssignment: (state, { payload: assignment }) => {
-      const { title, course, description, points, due_date, available_date } =
-        assignment;
-      const newAssignment: any = {
-        _id: uuidv4(),
-        title,
-        course,
-        description,
-        points,
-        due_date,
-        available_date,
+
+    addAssignment: (state, action: PayloadAction<Assignment>) => {
+      const newAssignment: SavedAssignment = {
+        ...action.payload,
+        _id: action.payload._id || `temp-${Date.now()}`, 
       };
-      state.assignments = [...state.assignments, newAssignment] as any;
+      state.assignments.push(newAssignment);
     },
-    deleteAssignment: (state, { payload: assignmentId }) => {
+
+    editAssignment: (state, action: PayloadAction<SavedAssignment>) => {
+      const index = state.assignments.findIndex(
+        (assignment) => assignment._id === action.payload._id
+      );
+      if (index !== -1) {
+        state.assignments[index] = action.payload;
+      }
+    },
+
+    updateAssignment: (
+      state,
+      action: PayloadAction<Partial<SavedAssignment> & { _id: string }>
+    ) => {
+      const index = state.assignments.findIndex(
+        (assignment) => assignment._id === action.payload._id
+      );
+      if (index !== -1) {
+        state.assignments[index] = {
+          ...state.assignments[index],
+          ...action.payload,
+        };
+      }
+    },
+
+    deleteAssignment: (state, action: PayloadAction<string>) => {
       state.assignments = state.assignments.filter(
-        (a: any) => a._id !== assignmentId
+        (assignment) => assignment._id !== action.payload
       );
     },
-    updateAssignment: (state, { payload: assignment }) => {
-      state.assignments = state.assignments.map((a: any) =>
-        a._id === assignment._id ? assignment : a
-      ) as any;
+
+    setCurrentAssignment: (state, action: PayloadAction<Assignment | null>) => {
+      state.currentAssignment = action.payload;
+    },
+
+    clearAssignments: (state) => {
+      state.assignments = [];
+      state.currentAssignment = null;
     },
   },
 });
+
 export const {
-  addAssignment,
-  deleteAssignment,
-  updateAssignment,
   setAssignments,
+  addAssignment,
+  editAssignment,
+  updateAssignment,
+  deleteAssignment,
+  setCurrentAssignment,
+  clearAssignments,
 } = assignmentsSlice.actions;
+
 export default assignmentsSlice.reducer;
