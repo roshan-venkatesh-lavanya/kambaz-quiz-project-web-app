@@ -13,7 +13,7 @@ function Landing() {
           <Col>
             <h5 className="mb-2">Created By:</h5>
             <ul className="mb-0 ps-3">
-              <li><strong>SRoshan Venkatesh Lavanya</strong></li>
+              <li><strong>Roshan Venkatesh Lavanya</strong></li>
             </ul>
           </Col>
         </Row>
