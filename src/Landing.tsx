@@ -24,7 +24,7 @@ function Landing() {
             <ul className="mb-0 ps-3">
               <li>
                 <a
-                  href="https://github.com/roshan-venkatesh-lavanya/kambaz-node-server-app"
+                  href="https://github.com/roshan-venkatesh-lavanya/kambaz-node-server-app/tree/project-quiz"
                   target="_blank"
                   rel="noreferrer"
                 >
