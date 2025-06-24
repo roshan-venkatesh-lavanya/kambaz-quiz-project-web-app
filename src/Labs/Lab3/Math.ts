@@ -9,4 +9,3 @@ const Math = {
   divide,
 };
 export default Math;
-

@@ -1,5 +1,6 @@
-export default function booleanVariables() {
-    let numberVariable = 123, floatingPointNumber = 234.345;
+export default function BooleanVariables() {
+
+let numberVariable = 123, floatingPointNumber = 234.345;
 let true1 = true, false1 = false;
 let false2 = true1 && false1;
 let true2 = true1 || false1;
@@ -19,4 +20,4 @@ return (
     true5     = {true5 + ""}     <br />
     false3    = {false3 + ""}    <hr />
   </div>
-);}
+)};
