@@ -7,15 +7,13 @@ function Landing() {
   return (
     <Container className="d-flex flex-column align-items-center mt-5">
       <Card style={{ width: "35rem", padding: "2rem" }} className="shadow-lg">
-        <h2 className="mb-4 text-center">🎓 Welcome to Kambaz Quiz App</h2>
+        <h2 className="mb-4 text-center"> Welcome to Kambaz Quizzes Final Project</h2>
 
         <Row className="mb-3">
           <Col>
-            <h5 className="mb-2">Developed By:</h5>
+            <h5 className="mb-2">Created By:</h5>
             <ul className="mb-0 ps-3">
-              <li><strong>Saran Jagadeesan Uma</strong></li>
-              <li><strong>Sai Rashwant Venkataraman Sundaram</strong></li>
-              <li><strong>Mithun Dineshkumar</strong></li>
+              <li><strong>SRoshan Venkatesh Lavanya</strong></li>
             </ul>
           </Col>
         </Row>
@@ -26,20 +24,20 @@ function Landing() {
             <ul className="mb-0 ps-3">
               <li>
                 <a
-                  href="https://github.com/Saran-Jagadeesan-Uma/kambaz-node-server-app"
+                  href="https://github.com/roshan-venkatesh-lavanya/kambaz-node-server-app"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  🛠️ Server Repository
+                  Server 
                 </a>
               </li>
               <li>
                 <a
-                  href="https://github.com/Saran-Jagadeesan-Uma/Kambaz-Quiz-App-Summer-Project"
+                  href="https://github.com//roshan-venkatesh-lavanya/kambaz-quiz-project-web-app"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  🎨 Frontend Repository
+                 Frontend
                 </a>
               </li>
             </ul>
@@ -48,7 +46,7 @@ function Landing() {
 
         <div className="text-center mt-4">
           <Button variant="primary" onClick={() => navigate("/Kambaz")}>
-            🚀 Enter Quiz App
+            🚀 Enter Quiz 🚀
           </Button>
         </div>
       </Card>
